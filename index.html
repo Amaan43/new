@@ -451,6 +451,77 @@ form button:hover {
       background: #333; color: white;
       text-align: center; padding: 15px;
     }
+
+    /* Responsive Styles */
+@media (max-width: 992px) {
+  .hero-text h1 {
+    font-size: 2.5em;
+  }
+  .hero-text p {
+    font-size: 1.2em;
+  }
+  .product-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .slides img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    background: rgba(0,0,0,0.9);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .hero-text h1 {
+    font-size: 2em;
+  }
+  .hero-text p {
+    font-size: 1em;
+  }
+  .hero-text .btn {
+    padding: 12px 25px;
+    font-size: 1em;
+  }
+
+  .slides img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.8em;
+  }
+  .hero-text p {
+    font-size: 0.9em;
+  }
+  .hero-text .btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+
+  .slides img {
+    height: 200px;
+  }
+
+  .contact-form, .map {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
   </style>
 </head>
 <!-- Preloader -->
@@ -477,7 +548,7 @@ form button:hover {
 
   <!-- Home Section -->
   <section id="home" class="home">
-    <video autoplay muted loop>
+    <video autoplay muted loop playsinline>
       <source src="backvideo.mp4" type="video/mp4">
     </video>
       <div class="overlay"></div>
@@ -644,3 +715,4 @@ document.querySelectorAll('.product-card').forEach(card => {
   </script>
 </body>
 </html>
+
