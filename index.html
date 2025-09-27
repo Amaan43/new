@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4 Section Webpage</title>
+  <style>
+    html{
+       scroll-behavior: smooth;
+    }
+    /* Preloader styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111; /* dark background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #b623ae; /* accent color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+#preloader p {
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Animation */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  
+
+  100% { transform: rotate(360deg); }
+}
+
+/* Hide preloader after load */
+body.loaded #preloader {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+ 
+}
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; line-height: 1.6; }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background:#b623ae;
+      
+      padding: 15px;
+      z-index: 1000;
+      display: flex; justify-content: center; gap: 20px;
+    }
+    nav a {
+      color: white; text-decoration: none; font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover { color: black; }
+
+    /* Sections */
+    section { padding: 80px 20px; min-height: 100vh; }
+    
+    /* Home */
+   .home {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.home video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 10px;
+}
+
+.hero-text p {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+  color: #f9f9f9;
+  font-weight: normal;
+}
+
+.hero-text .btn {
+  display: inline-block;
+  padding: 14px 35px;
+  background: #b623ae;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.hero-text .btn:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+    /* about*/
+    .about {
+  background: #f9f9f9;
+  padding: 80px 20px;
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.about-text h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+  position: relative;
+}
+
+.about-text h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #b623ae;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+.about-text p {
+  margin-bottom: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.about-text ul {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.about-text ul li {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 280px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.05);
+}
+/*------------------------*/
+  .products h2{
+        font-size: 2em;
+  text-align: center;
+  margin-bottom: 40px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+    }
+    .products .heading::after {
+  content: "";
+  position:absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #b623ae; /* orange line */
+  border-radius: 2px;
+}
+
+  .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-card h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.product-card .details {
+  display: none;
+  color: #666;
+}
+
+.product-card .read-more {
+  display: inline-block;
+  margin: 10px 0;
+  color:#b623ae;
+
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.product-card .read-more:hover {
+  color: black;
+}
+
+
+.product-card .btn {
+  display: inline-block;
+  padding: 5px 25px;
+  background: #b623ae;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.product-card .btn:hover {
+  background: #000;
+  transform: scale(1.05);
+}
+    /* Gallery */
+    .gallery {
+                background: #f9f9f9;
+         padding: 80px 20px;
+        
+    
+    }
+    .gallery h2 {     font-size: 2em;
+  text-align: center;
+  margin-bottom: 40px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px; }
+
+  .gallery .heading::after {
+  content: "";
+  position:absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #b623ae; /* orange line */
+  border-radius: 2px;
+}
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+        
+      
+
+    }
+    .gallery-grid img {
+      width: 100%; border-radius: 8px; transition: 0.3s;
+    }
+    .gallery-grid img:hover { transform: scale(1.05); }
+
+    /* Contact */
+    .contact h2{
+        font-size: 2em;
+  text-align: center;
+  margin-bottom: 40px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+    }
+    .contact .heading::after {
+  content: "";
+  position:absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #b623ae; /* orange line */
+  border-radius: 2px;
+}
+   .contact {
+  background: #fff;
+  padding: 80px 20px;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: auto;
+}
+
+form {
+  flex: 1;
+  min-width: 280px;
+  max-width: 500px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #b623ae;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #000;
+  
+}
+
+/* Responsive Map Styling */
+.map-container {
+  flex: 1;
+  min-width: 280px;
+  position: relative;
+  padding-bottom: 60%; /* controls aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+    /* Footer */
+    footer {
+      background: #333; color: white;
+      text-align: center; padding: 15px;
+    }
+  </style>
+</head>
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader"></div>
+  <p>Loading...</p>
+</div>
+<script>
+  window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+  });
+</script>
+
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#home" class="active">Home</a>
+     <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="home">
+    <video autoplay muted loop>
+      <source src="backvideo.mp4" type="video/mp4">
+    </video>
+      <div class="overlay"></div>
+  <div class="hero-text">
+    <h1>Mansuri Enter<span style="color:#b623ae;">prises</span></h1>
+    <p>Cutting Through Stone with Precision & Strength</p>
+    <a href="#contact" class="btn">Contact Us</a>
+  </div>
+  </section>
+  <!-- About Section -->
+<section id="about" class="about">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>
+        At <strong>GraniteWire Industries</strong>, we specialize in manufacturing and 
+        supplying <strong>high-performance Granite Quarry Wire</strong> designed for 
+        maximum efficiency, durability, and precision. Our quarry wires are trusted 
+        by stone processing companies worldwide for their ability to deliver clean cuts, 
+        reduce waste, and improve quarrying productivity.
+      </p>
+      <p>
+        With years of experience in stone cutting solutions, we are committed to 
+        innovation, advanced technology, and sustainability. Our mission is to 
+        provide quarrying industries with tools that not only enhance 
+        productivity but also ensure safety and reliability in the most demanding 
+        environments.
+      </p>
+      <ul>
+        <li>✅ Premium quality diamond wires</li>
+        <li>✅ High cutting speed with precision</li>
+        <li>✅ Long-lasting and cost-effective</li>
+        <li>✅ Environment-friendly solutions</li>
+      </ul>
+    </div>
+    <div class="about-image">
+      <img src="wire.jpg" alt="Granite Quarry Wire">
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<!-- Products Section -->
+<section id="products" class="products">
+  <h2 class="heading">Our Products</h2>
+  <div class="product-grid">
+    
+    <div class="product-card">
+      <img src="wire.jpg" alt="Soma Slim XS Wood Top">
+      <h3>Soma Slim XS Wood Top</h3>
+      <p class="short-text">This amazing accent Pot is hand-crafted with a solid stone and wood frame.</p>
+      <p class="details">
+        Our granite wire is precision-engineered for cutting efficiency. Designed with advanced bonding 
+        technology, it delivers smooth performance, high durability, and cost-effectiveness, making it 
+        ideal for large-scale quarry operations.
+      </p>
+      <span class="read-more">Read More</span>
+       <a href="#contact" class="btn">Contact Us</a>
+    </div>
+
+    <div class="product-card">
+      <img src="wire.jpg" alt="Sculpture Coffee Table">
+      <h3>Sculpture Coffee Table</h3>
+      <p class="short-text">Minimalist design combining natural and man-made materials.</p>
+      <p class="details">
+        Built for modern quarrying, this wire ensures reduced waste, increased cutting precision, 
+        and excellent adaptability to different stone types. Its long life cycle saves both time and cost.
+      </p>
+      <span class="read-more">Read More</span>
+      <a href="#contact" class="btn">Contact Us</a>
+    </div>
+
+    <div class="product-card">
+      <img src="wire.jpg" alt="Tuber Large">
+      <h3>Tuber Large</h3>
+      <p class="short-text">A simple, post-modern design that works well with a variety of styles.</p>
+      <p class="details">
+        Made with premium diamond beads, our quarry wire is designed to withstand 
+        continuous heavy-duty usage, ensuring reliability and reduced downtime in operations.
+      </p>
+      <span class="read-more">Read More</span>
+      <a href="#contact" class="btn">Contact Us</a>
+    </div>
+
+    <div class="product-card">
+      <img src="wire.jpg" alt="Soma L All Stone">
+      <h3>Soma L All Stone</h3>
+      <p class="short-text">Experience modern art with this beautiful mid-century table.</p>
+      <p class="details">
+        Engineered with precision, this granite quarry wire enhances cutting efficiency, 
+        supports consistent performance, and lowers operational costs across different quarry setups.
+      </p>
+      <span class="read-more">Read More</span>
+      <a href="#contact" class="btn">Contact Us</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <h2 class="heading">Gallery</h2>
+    <div class="gallery-grid">
+      <img src="wire.jpg" alt="Gallery Image 1">
+      <img src="wire.jpg" alt="Gallery Image 2">
+      <img src="wire.jpg" alt="Gallery Image 3">
+      <img src="wire.jpg" alt="Gallery Image 4">
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <!-- Contact Section -->
+<section id="contact" class="contact">
+  <h2 class="heading">Contact Us</h2>
+  <div class="contact-container">
+    
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+    
+    <!-- Responsive Map -->
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114165.4472276877!2d74.76888269312072!3d26.594955587639763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396bf0d8e1f2268d%3A0xd80284069316ef89!2sKishangarh%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1758891374364!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> 
+        allowfullscreen="" loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer style="background: #b623ae; color:#fff">
+    <p>&copy; 2025 My Website. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle Read More
+   // Read More toggle inside product cards
+document.querySelectorAll('.product-card').forEach(card => {
+  const btn = card.querySelector('.read-more');
+  const details = card.querySelector('.details');
+
+  btn.addEventListener('click', () => {
+    if(details.style.display === "block"){
+      details.style.display = "none";
+      btn.textContent = "Read More";
+    } else {
+      details.style.display = "block";
+      btn.textContent = "Read Less";
+    }
+  });
+});
+
+
+
+  </script>
+</body>
+</html>
